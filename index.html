@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vedant Sakpal | Full Stack Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Main layout and gray gradient background */
+    body {
+      background: linear-gradient(to bottom right, #2e2e2e, #4f4f4f);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 250px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Sidebar header */
+    .sidebar h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d3d3d3;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Sidebar Links */
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .sidebar nav a i {
+      margin-right: 10px;
+    }
+
+    .sidebar nav a:hover {
+      background-color: #d3d3d3;
+      color: #2e2e2e;
+      transform: translateX(10px);
+    }
+
+    .sidebar nav a.active {
+      background-color: #d3d3d3;
+      color: #2e2e2e;
+      transform: translateX(10px);
+    }
+
+    /* Download Button Styling */
+    .download-button {
+      display: flex;
+      align-items: center;
+      color: #2e2e2e;
+      background-color: #d3d3d3;
+      font-weight: bold;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+    }
+
+    .download-button:hover {
+      background-color: #bbbbbb;
+      transform: translateX(5px);
+    }
+
+    /* Content container */
+    .content-container {
+      margin-left: 270px;
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    /* Section styling */
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    /* Titles and headings */
+    .section h2 {
+      font-size: 2rem;
+      color: #d3d3d3;
+      border-bottom: 2px solid #d3d3d3;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <h1>Vedant Sakpal</h1>
+    <nav>
+      <a href="#profile" class="active"><i class="fas fa-user"></i> Profile</a>
+      <a href="#skills"><i class="fas fa-laptop-code"></i> Skills</a>
+      <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+      <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+      <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+    <!-- Download PDF Button -->
+    <a href="resume.pdf" download class="download-button">
+      <i class="fas fa-file-download"></i> Download PDF
+    </a>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="content-container">
+
+    <!-- Profile Section -->
+    <section id="profile" class="section fade-in">
+      <h2>Profile</h2>
+      <p>
+        Full Stack Web Developer currently pursuing an engineering degree, skilled in both front-end and back-end technologies, with proficiency in frameworks such as React and Node.js. Experienced in building user-friendly web applications and committed to continuous learning.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section fade-in">
+      <h2>Skills</h2>
+      <ul class="list-disc list-inside">
+        <li>ReactJS</li>
+        <li>Python</li>
+        <li>GIS</li>
+        <li>Tailwind CSS</li>
+        <li>Bootstrap</li>
+        <li>Django</li>
+      </ul>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section fade-in">
+      <h2>Experience</h2>
+      <div class="mb-4">
+        <h3 class="text-xl font-semibold">Kindness Unlimited - Web Developer Intern</h3>
+        <p>Enhanced user experience and functionality using ReactJS for the Kindness Unlimited website.</p>
+      </div>
+      <div class="mb-4">
+        <h3 class="text-xl font-semibold">Eduvance - Python Developer Intern</h3>
+        <p>Developed Python scripts to automate data processing, reducing manual effort by 50%.</p>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section fade-in">
+      <h2>Education</h2>
+      <div class="mb-4">
+        <h3 class="text-xl font-semibold">FR. Conceicao Rodrigues College of Engineering</h3>
+        <p>Minor in Data Science - Present</p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section fade-in">
+      <h2>Projects</h2>
+      <div class="mb-4">
+        <h3 class="text-xl font-semibold">AI-Based Assessment App System</h3>
+        <p>Developed a React Native app for accessible skill assessments, tailored for people with disabilities.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-in">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:Vedantsakpal840@gmail.com" class="text-gray-400">Vedantsakpal840@gmail.com</a></p>
+    </section>
+
+  </div>
+
+  <!-- GSAP Animations -->
+  <script>
+    // GSAP Animations for fade-in effect
+    document.addEventListener("DOMContentLoaded", function () {
+      gsap.to(".fade-in", {
+        duration: 1.5,
+        opacity: 1,
+        y: 0,
+        stagger: 0.3,
+        ease: "power3.out",
+      });
+    });
+  </script>
+
+</body>
+</html>
