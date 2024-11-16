@@ -6,14 +6,23 @@
   <title>Vedant Sakpal | Full Stack Developer</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Main layout and gray gradient background */
+    /* Main layout and animated gray gradient background */
     body {
-      background: linear-gradient(to bottom right, #2e2e2e, #4f4f4f);
+      background: linear-gradient(120deg, #2e2e2e, #4f4f4f, #666666);
+      background-size: 400% 400%;
       color: #ffffff;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* Sidebar styling */
@@ -23,22 +32,44 @@
       top: 0;
       height: 100%;
       width: 250px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(10px);
       padding: 20px;
-      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    /* Sidebar header */
+    /* Floating effect for sidebar */
+    .sidebar:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Sidebar header with typing animation */
     .sidebar h1 {
       font-size: 1.5rem;
       font-weight: bold;
       color: #d3d3d3;
       margin-bottom: 20px;
       text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #d3d3d3;
+      width: 0;
+      animation: typing 3s steps(15) forwards, blink 0.5s step-end infinite alternate;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from { border-color: transparent; }
+      to { border-color: #d3d3d3; }
     }
 
     /* Sidebar Links */
@@ -58,12 +89,7 @@
       margin-right: 10px;
     }
 
-    .sidebar nav a:hover {
-      background-color: #d3d3d3;
-      color: #2e2e2e;
-      transform: translateX(10px);
-    }
-
+    .sidebar nav a:hover,
     .sidebar nav a.active {
       background-color: #d3d3d3;
       color: #2e2e2e;
@@ -104,8 +130,6 @@
       margin-bottom: 30px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(10px);
-      transform: translateY(20px);
-      opacity: 0;
     }
 
     /* Titles and headings */
@@ -115,9 +139,18 @@
       border-bottom: 2px solid #d3d3d3;
       padding-bottom: 5px;
       margin-bottom: 15px;
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    /* Paragraph animation styles */
+    .section p, .section ul {
+      opacity: 0;
+      transform: translateX(50px);
     }
 
   </style>
+  
 </head>
 <body>
 
@@ -125,12 +158,12 @@
   <aside class="sidebar">
     <h1>Vedant Sakpal</h1>
     <nav>
-      <a href="#profile" class="active"><i class="fas fa-user"></i> Profile</a>
-      <a href="#skills"><i class="fas fa-laptop-code"></i> Skills</a>
-      <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-      <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-      <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
-      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="#profile" class="nav-link active"><i class="fas fa-user"></i> Profile</a>
+      <a href="#skills" class="nav-link"><i class="fas fa-laptop-code"></i> Skills</a>
+      <a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a>
+      <a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+      <a href="#projects" class="nav-link"><i class="fas fa-project-diagram"></i> Projects</a>
+      <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
     </nav>
     <!-- Download PDF Button -->
     <a href="resume.pdf" download class="download-button">
@@ -140,7 +173,6 @@
 
   <!-- Main Content -->
   <div class="content-container">
-
     <!-- Profile Section -->
     <section id="profile" class="section fade-in">
       <h2>Profile</h2>
@@ -169,10 +201,6 @@
         <h3 class="text-xl font-semibold">Kindness Unlimited - Web Developer Intern</h3>
         <p>Enhanced user experience and functionality using ReactJS for the Kindness Unlimited website.</p>
       </div>
-      <div class="mb-4">
-        <h3 class="text-xl font-semibold">Eduvance - Python Developer Intern</h3>
-        <p>Developed Python scripts to automate data processing, reducing manual effort by 50%.</p>
-      </div>
     </section>
 
     <!-- Education Section -->
@@ -198,22 +226,193 @@
       <h2>Contact</h2>
       <p>Email: <a href="mailto:Vedantsakpal840@gmail.com" class="text-gray-400">Vedantsakpal840@gmail.com</a></p>
     </section>
-
   </div>
 
-  <!-- GSAP Animations -->
+  <!-- JavaScript for animations and dynamic effects -->
   <script>
-    // GSAP Animations for fade-in effect
     document.addEventListener("DOMContentLoaded", function () {
-      gsap.to(".fade-in", {
-        duration: 1.5,
-        opacity: 1,
-        y: 0,
-        stagger: 0.3,
-        ease: "power3.out",
+      // GSAP Animation for each section title and content
+      gsap.utils.toArray(".section").forEach(section => {
+        const title = section.querySelector("h2");
+        const content = section.querySelectorAll("p, ul");
+
+        // Animate the section title
+        gsap.fromTo(title, {
+          opacity: 0,
+          x: -50
+        }, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        });
+
+        // Animate each content element within the section
+        gsap.fromTo(content, {
+          opacity: 0,
+          x: 50
+        }, {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+
+      // Smooth scrolling for nav links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Active link highlight on scroll
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 60;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
       });
     });
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Enhanced typing animation for sidebar header
+    const sidebarTitle = document.querySelector(".sidebar h1");
+    gsap.to(sidebarTitle, {
+      width: "100%",
+      duration: 2.5,
+      ease: "steps(12)",
+      onComplete: () => {
+        gsap.to(sidebarTitle, {
+          scale: 1.1,
+          color: "#ffffff",
+          duration: 1,
+          repeat: -1,
+          yoyo: true,
+        });
+      },
+    });
+
+    // 3D rotation and scale for section titles
+    gsap.utils.toArray(".section").forEach((section) => {
+      const title = section.querySelector("h2");
+      const content = section.querySelectorAll("p, ul");
+
+      // Title animation with 3D rotation and scaling
+      gsap.fromTo(
+        title,
+        { opacity: 0, x: -100, rotationY: 45, scale: 0.8 },
+        {
+          opacity: 1,
+          x: 0,
+          rotationY: 0,
+          scale: 1,
+          duration: 1.5,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // Parallax effect for content elements with stagger
+      gsap.fromTo(
+        content,
+        { opacity: 0, x: 100, y: 20, rotationX: 10 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    // Background gradient linked to scroll position for a parallax effect
+    gsap.to("body", {
+      backgroundPosition: "200% 50%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+      },
+    });
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+
+    // Active link highlight on scroll
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 60;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+  });
+</script>
+
 
 </body>
 </html>
